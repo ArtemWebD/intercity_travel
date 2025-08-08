@@ -21,10 +21,9 @@ const RightsView = () => {
 
     return (
         <Flex
-            width={"100vw"}
-            height={"100vh"}
+            width={"100%"}
+            height={"100%"}
             p={"2"}
-            pt={"9"}
             justify={"center"}
             align={"center"}
             className="relative before:content-[''] before:w-screen before:h-screen before:fixed before:top-0 before:left-0 before:z-[-1] before:opacity-[0.075] before:bg-[url(/images/expand-rights/background.png)] before:bg-no-repeat before:bg-contain before:bg-center"

@@ -84,8 +84,12 @@ const RightsForm: FC<IRightsFormProps> = ({ onSubmited }) => {
     }
 
     return (
-        // @ts-ignore
-        <BaseForm buttonLabel="Войти" className="w-full h-full" onSubmit={handleSubmit(onSubmit)}>
+        <BaseForm
+            buttonLabel="Отправить"
+            className="w-full h-full"
+            // @ts-ignore
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <Heading as="h1" size={"8"} align={"center"}>
                 Расширение прав
             </Heading>

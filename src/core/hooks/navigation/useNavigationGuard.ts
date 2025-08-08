@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import type { IUseNavigationGuardProps } from "./types/IUseNavigationGuard";
-import { useContext, useLayoutEffect, useMemo } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { StoreContext } from "../../../store";
-// import AuthService from "../../../modules/auth/services/auth.service";
+import { Roles } from "../../../store/auth/types/IAuthStore";
 
 /**
  * Хук, управляющий доступом в зависимости от состояния авторизации.
@@ -10,7 +10,6 @@ import { StoreContext } from "../../../store";
  * @param param0 Роуты приложения
  */
 export const useNavigationGuard = ({
-    authRoute,
     agentRoutes,
     driverRoutes,
     userRoutes,
@@ -18,46 +17,19 @@ export const useNavigationGuard = ({
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { authStore, loaderStore } = useContext(StoreContext);
-
-    const protectedRoutes = useMemo(
-        () => [...agentRoutes, ...driverRoutes, ...userRoutes].map((route) => route.path),
-        [agentRoutes, driverRoutes, userRoutes],
-    );
+    const { authStore } = useContext(StoreContext);
 
     useLayoutEffect(() => {
-        checkIsAuth();
-    }, []);
-
-    useLayoutEffect(() => {
-        if (!authStore.getIsAuth && protectedRoutes.includes(location.pathname)) {
-            navigate(authRoute);
+        if (authStore.getRole !== Roles.AGENT && agentRoutes.includes(location.pathname)) {
+            navigate(userRoutes[0]);
         }
 
-        if (authStore.getIsAuth && location.pathname === authRoute) {
-            navigate(getFirstRoute());
+        if (authStore.getRole !== Roles.DRIVER && driverRoutes.includes(location.pathname)) {
+            navigate(userRoutes[0]);
         }
-    }, [
-        authStore.getIsAuth,
-        protectedRoutes,
-        location.pathname,
-        getFirstRoute,
-    ]);
 
-    async function checkIsAuth(): Promise<void> {
-        try {
-            loaderStore.start();
-
-            // const token = await AuthService.refresh();
-
-            // authStore.login(token);
-        } catch (error) {
-        } finally {
-            loaderStore.end();
+        if (authStore.getRole !== Roles.USER && userRoutes.includes(location.pathname)) {
+            navigate(driverRoutes[0]);
         }
-    }
-
-    function getFirstRoute(): string {
-        return "/";
-    }
+    }, [authStore.getRole, agentRoutes, driverRoutes, userRoutes, location.pathname]);
 };
