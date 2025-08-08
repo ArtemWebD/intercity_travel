@@ -12,16 +12,16 @@ const BaseForm: FC<IBaseFormProps> = ({
     ...props
 }) => {
     return (
-        <Box
-            {...props}
-            className={`border border-gray-700 rounded-lg ${props.className ?? ""}`}
-            p={"5"}
-        >
-            <Form.Root className="w-full" onSubmit={onSubmit}>
+        <Box {...props} className={`${props.className ?? ""}`} p={"5"}>
+            <Form.Root className="w-full h-full flex flex-col pb-1" onSubmit={onSubmit}>
                 {children}
-                <Flex justify={"between"} mt={"5"}>
+                <Flex justify={"between"} mt={"auto"} className="!mt-auto">
                     <Form.Submit asChild>
-                        <Button type="submit" size={"3"} className="!cursor-pointer">
+                        <Button
+                            type="submit"
+                            size={"3"}
+                            className={`!cursor-pointer ${isCancel ? "" : "!w-full"}`}
+                        >
                             {buttonLabel}
                         </Button>
                     </Form.Submit>

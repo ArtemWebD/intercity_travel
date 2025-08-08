@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { IUseNavigationGuardProps } from "./types/IUseNavigationGuard";
 import { useContext, useLayoutEffect, useMemo } from "react";
 import { StoreContext } from "../../../store";
-import AuthService from "../../../modules/auth/services/auth.service";
+// import AuthService from "../../../modules/auth/services/auth.service";
 
 /**
  * Хук, управляющий доступом в зависимости от состояния авторизации.
@@ -39,7 +39,6 @@ export const useNavigationGuard = ({
         }
     }, [
         authStore.getIsAuth,
-        authStore.getIsAdmin,
         protectedRoutes,
         location.pathname,
         getFirstRoute,
@@ -49,9 +48,9 @@ export const useNavigationGuard = ({
         try {
             loaderStore.start();
 
-            const token = await AuthService.refresh();
+            // const token = await AuthService.refresh();
 
-            authStore.login(token);
+            // authStore.login(token);
         } catch (error) {
         } finally {
             loaderStore.end();
