@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Theme } from "@radix-ui/themes";
 import AppRouter from "./router/AppRouter";
 import BaseLoader from "./core/components/base-loader/BaseLoader";
