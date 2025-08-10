@@ -12,7 +12,7 @@ const BaseForm: FC<IBaseFormProps> = ({
     ...props
 }) => {
     return (
-        <Box {...props} className={`${props.className ?? ""}`} p={"5"}>
+        <Box {...props} className={`${props.className ?? ""}`} p={"5"} pt={"0"}>
             <Form.Root className="w-full h-full flex flex-col pb-1" onSubmit={onSubmit}>
                 {children}
                 <Flex justify={"between"} mt={"auto"} className="!mt-auto">

@@ -1,4 +1,4 @@
-import { Flex, Heading, Select } from "@radix-ui/themes";
+import { Flex, Select } from "@radix-ui/themes";
 import BaseForm from "../../../core/components/base/BaseForm";
 import { Form } from "radix-ui";
 import BaseInput from "../../../core/components/base/BaseInput";
@@ -90,10 +90,7 @@ const RightsForm: FC<IRightsFormProps> = ({ onSubmited }) => {
             // @ts-ignore
             onSubmit={handleSubmit(onSubmit)}
         >
-            <Heading as="h1" size={"8"} align={"center"}>
-                Расширение прав
-            </Heading>
-            <Flex gap={"2"} mt={"5"}>
+            <Flex gap={"2"}>
                 <Form.Field name="name" className="w-[50%]">
                     <BaseLabel>Имя</BaseLabel>
                     <Flex direction={"column"} gap={"1"}>
