@@ -1,6 +1,6 @@
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 export const routes = {
     user: [
@@ -18,8 +18,8 @@ export const routes = {
     driver: [
         {
             path: "/info",
-            icon: PermContactCalendarIcon,
-            name: "Кабинет",
+            icon: PersonOutlineOutlinedIcon,
+            name: "Профиль",
         },
     ],
     agent: [],

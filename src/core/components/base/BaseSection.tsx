@@ -9,7 +9,7 @@ const BaseSection: FC<HTMLAttributes<HTMLDivElement>> = ({ className, children, 
             height={"100%"}
             p={"2"}
             pt={"3"}
-            className={`border border-gray-500 rounded-lg ${className ? className : ""}`}
+            className={`border border-gray-300 rounded-2xl ${className ? className : ""}`}
         >
             {children}
         </Box>
