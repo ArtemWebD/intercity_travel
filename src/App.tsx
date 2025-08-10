@@ -16,7 +16,7 @@ const App = () => {
     return (
         <Theme
             appearance="light"
-            accentColor="indigo"
+            accentColor="gray"
             grayColor="mauve"
             radius="medium"
             className={`pt-[5rem] pb-[35px] min-h-screen flex flex-col`}

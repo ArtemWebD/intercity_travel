@@ -21,7 +21,7 @@ const RightsView = () => {
     }, [isSubmited, changeIsSubmited]);
 
     return (
-        <BasePage title="Расширение прав" titleAlign="center">
+        <BasePage>
             <AnimatePresence mode="wait">
                 {!isSubmited ? (
                     <motion.div
