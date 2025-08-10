@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { Roles } from "./types/IAuthStore";
 
 export default class AuthStore {
-    private role: Roles | null = (localStorage.getItem("role") as Roles) ?? Roles.USER;
+    private role: Roles | null = (localStorage.getItem("role") as Roles) ?? Roles.DRIVER;
 
     constructor() {
         makeAutoObservable(this);

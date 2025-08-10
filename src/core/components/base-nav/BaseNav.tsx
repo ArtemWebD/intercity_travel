@@ -28,6 +28,19 @@ const BaseNav = () => {
                         </Text>
                     </Link>
                 ))}
+            {authStore.getRole === Roles.DRIVER &&
+                routes.driver.map((route) => (
+                    <Link
+                        key={route.path}
+                        to={route.path}
+                        className={`flex flex-col justify-center items-center ${location.pathname === route.path ? "text-[var(--accent-9)]" : ""}`}
+                    >
+                        <route.icon sx={{ fontSize: 20 }} />
+                        <Text size={"1"} align={"center"}>
+                            {route.name}
+                        </Text>
+                    </Link>
+                ))}
         </Flex>
     );
 };

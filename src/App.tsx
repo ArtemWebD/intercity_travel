@@ -19,7 +19,7 @@ const App = () => {
             accentColor="indigo"
             grayColor="mauve"
             radius="medium"
-            className={`pt-[5rem] pb-[${WebApp.platform === "ios" ? "34px" : "46px"}] min-h-screen flex flex-col`}
+            className={`pt-[5rem] pb-[40px] min-h-screen flex flex-col before:content-[''] before:w-screen before:h-screen before:fixed before:top-0 before:left-0 before:z-[-1] before:opacity-[0.075] before:bg-[url(/images/expand-rights/background.png)] before:bg-no-repeat before:bg-contain before:bg-center`}
         >
             <AppRouter />
             <BaseNav />

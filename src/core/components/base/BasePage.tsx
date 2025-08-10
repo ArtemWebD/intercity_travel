@@ -1,19 +1,24 @@
 import type { FC } from "react";
 import type { IBasePageProps } from "./types/IBasePage";
 import { Box, Heading } from "@radix-ui/themes";
+import { motion } from "framer-motion";
 
-const BasePage: FC<IBasePageProps> = ({ children, title }) => {
+const BasePage: FC<IBasePageProps> = ({ children, title, titleAlign }) => {
     return (
-        <Box width={"100%"}>
+        <motion.div
+            className="w-full h-full pl-5 pr-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+        >
             {title && (
-                <Heading as="h1" size={"6"} className="p-4 !mb-9 border border-gray-800 rounded-lg">
+                <Heading as="h1" size={"7"} className="!mb-9" align={titleAlign}>
                     {title}
                 </Heading>
             )}
-            <Box width={"100%"} p={"7"} className="border border-gray-800 rounded-lg">
-                {children}
-            </Box>
-        </Box>
+            <Box width={"100%"}>{children}</Box>
+        </motion.div>
     );
 };
 
