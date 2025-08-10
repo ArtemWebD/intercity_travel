@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Theme } from "@radix-ui/themes";
 import AppRouter from "./router/AppRouter";
 import BaseLoader from "./core/components/base-loader/BaseLoader";
@@ -15,11 +15,11 @@ const App = () => {
 
     return (
         <Theme
-            appearance="dark"
+            appearance="light"
             accentColor="indigo"
             grayColor="mauve"
             radius="medium"
-            className={`pt-[5rem] pb-[${WebApp.platform === "ios" ? "34px" : "46px"}] min-h-screen flex flex-col`}
+            className={`pt-[5rem] pb-[35px] min-h-screen flex flex-col`}
         >
             <AppRouter />
             <BaseNav />
