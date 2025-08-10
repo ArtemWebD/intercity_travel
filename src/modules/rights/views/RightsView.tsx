@@ -3,6 +3,7 @@ import RightsForm from "../components/RightsForm";
 import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import BasePage from "../../../core/components/base/BasePage";
 
 const RightsView = () => {
     const [isSubmited, setIsSubmited] = useState(false);
@@ -20,14 +21,7 @@ const RightsView = () => {
     }, [isSubmited, changeIsSubmited]);
 
     return (
-        <Flex
-            width={"100%"}
-            height={"100%"}
-            p={"2"}
-            justify={"center"}
-            align={"center"}
-            className="relative before:content-[''] before:w-screen before:h-screen before:fixed before:top-0 before:left-0 before:z-[-1] before:opacity-[0.075] before:bg-[url(/images/expand-rights/background.png)] before:bg-no-repeat before:bg-contain before:bg-center"
-        >
+        <BasePage>
             <AnimatePresence mode="wait">
                 {!isSubmited ? (
                     <motion.div
@@ -65,7 +59,7 @@ const RightsView = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </Flex>
+        </BasePage>
     );
 };
 

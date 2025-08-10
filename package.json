@@ -23,9 +23,11 @@
         "mobx": "^6.13.7",
         "mobx-react-lite": "^4.1.0",
         "react": "^19.1.1",
+        "react-cropper": "^2.3.3",
         "react-dom": "^19.1.1",
         "react-hook-form": "^7.62.0",
         "react-router-dom": "^7.7.1",
+        "swiper": "^11.2.10",
         "tailwindcss": "^4.1.11",
         "use-mask-input": "^3.5.0",
         "valibot": "^1.1.0"

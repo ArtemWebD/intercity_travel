@@ -8,6 +8,11 @@ export const routes: IAppRoutes = {
             component: lazy(() => import("../modules/rights/views/RightsView")),
         },
     ],
-    driver: [],
+    driver: [
+        {
+            path: "/info",
+            component: lazy(() => import("../modules/driver-info/views/DriverInfoView")),
+        },
+    ],
     agent: [],
 };
