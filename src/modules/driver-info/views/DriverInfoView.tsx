@@ -1,15 +1,7 @@
-import BasePage from "../../../core/components/base/BasePage";
-import DriverInfoFeedbacks from "../components/DriverInfoFeedbacks";
-import DriverInfoHeader from "../components/DriverInfoHeader";
+import { Outlet } from "react-router-dom";
 
 const DriverInfoView = () => {
-    return (
-        <BasePage>
-            <DriverInfoHeader />
-            <DriverInfoFeedbacks />
-            {/* <DriverInfoForm /> */}
-        </BasePage>
-    );
+    return <Outlet />;
 };
 
 export default DriverInfoView;

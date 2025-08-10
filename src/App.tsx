@@ -18,7 +18,7 @@ const App = () => {
             appearance="light"
             accentColor="gray"
             grayColor="mauve"
-            radius="medium"
+            radius="large"
             className={`pt-[5rem] pb-[35px] min-h-screen flex flex-col`}
         >
             <AppRouter />

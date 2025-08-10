@@ -5,6 +5,7 @@ import BaseSuspense from "../core/components/base/BaseSuspense";
 import { useContext, useMemo } from "react";
 import { StoreContext } from "../store";
 import { Roles } from "../store/auth/types/IAuthStore";
+import RouteHelper from "../core/libs/route-helper/routeHelper";
 
 const AppRouter = () => {
     const { authStore } = useContext(StoreContext);
@@ -40,7 +41,12 @@ const AppRouter = () => {
             ))}
             <Route
                 path="*"
-                element={<Navigate to={protectedRoutes[0]?.path ?? routes.all[0].path} replace />}
+                element={
+                    <Navigate
+                        to={RouteHelper.clearPath(protectedRoutes[0]?.path ?? routes.all[0].path)}
+                        replace
+                    />
+                }
             />
         </Routes>
     );

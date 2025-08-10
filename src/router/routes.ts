@@ -10,8 +10,16 @@ export const routes: IAppRoutes = {
     ],
     driver: [
         {
-            path: "/info",
+            path: "/info/*",
             component: lazy(() => import("../modules/driver-info/views/DriverInfoView")),
+            children: [
+                {
+                    path: "",
+                    component: lazy(
+                        () => import("../modules/driver-info/views/DriverInfoMainPage"),
+                    ),
+                },
+            ],
         },
     ],
     agent: [],

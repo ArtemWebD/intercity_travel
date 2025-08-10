@@ -1,29 +1,38 @@
-import { Box, Flex, IconButton, Text } from "@radix-ui/themes";
-import { memo, useCallback, useState } from "react";
-import BaseImageUpload from "../../../core/components/base-image-upload/BaseImageUpload";
-import EditIcon from "@mui/icons-material/Edit";
+import { Badge, Box, Button, Flex, Text } from "@radix-ui/themes";
+import { memo } from "react";
+import BaseSection from "../../../core/components/base/BaseSection";
+import StarIcon from "@mui/icons-material/Star";
+import AnimatedNumber from "../../../core/components/animated-number/AnimatedNumber";
+import EditSquareIcon from "@mui/icons-material/EditSquare";
+import BaseButton from "../../../core/components/base/BaseButton";
 
 const DriverInfoHeader = () => {
-    const [photo, setPhoto] = useState("/images/driver-info/user.webp");
-
-    const changePhoto = useCallback((image: string) => setPhoto(image), [setPhoto]);
-
     return (
-        <Flex align={"center"} gap={"5"}>
-            <Box width={"100px"} height={"100px"} className="rounded-full overflow-hidden relative">
-                <BaseImageUpload onImage={changePhoto} />
-                <img alt="photo" src={photo} className="min-w-full min-h-full object-cover" />
+        <BaseSection className="!flex flex-col justify-center items-center">
+            <Box className="w-[90px] h-[90px] rounded-full overflow-hidden mb-3">
+                <img
+                    src="/images/driver-info/user.webp"
+                    alt="Фото профиля"
+                    className="min-w-full min-h-full object-cover"
+                />
             </Box>
-            <Flex direction={"column"} gap={"2"} position={"relative"}>
-                <Text size={"6"}>Иван Иванов</Text>
-                <Text size={"3"} color="gray">
+            <Text size={"4"}>Иванов Иван</Text>
+            <Flex className="mt-3 mb-3" align={"center"} gap={"1"}>
+                <Badge className="!font-bold" size={"1"} highContrast>
                     Водитель
-                </Text>
-                <IconButton size={"1"} className="!absolute !right-[-2rem] !top-0">
-                    <EditIcon sx={{ fontSize: 15 }} />
-                </IconButton>
+                </Badge>
+                <Flex align={"center"}>
+                    <StarIcon sx={{ fontSize: 20, color: "#FDC700" }} />
+                    <Text weight={"bold"} size={"2"} className="w-[25px]">
+                        <AnimatedNumber value={4.9} digits={1} />
+                    </Text>
+                </Flex>
             </Flex>
-        </Flex>
+            <Text size={"2"} className="!font-semibold">
+                Работаю с Января 2025
+            </Text>
+            <BaseButton text="Редактировать профиль" icon={EditSquareIcon} className="!mt-4" />
+        </BaseSection>
     );
 };
 
