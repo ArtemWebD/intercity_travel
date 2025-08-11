@@ -38,7 +38,7 @@ const BaseNav = () => {
                 <Link
                     key={route.path}
                     to={RouteHelper.clearPath(route.path)}
-                    className={`flex flex-col justify-center items-center ${isMatch(route.path) ? "font-bold" : ""}`}
+                    className={`flex flex-col justify-center items-center ${isMatch(route.path) ? "font-bold" : "text-gray-500 font-medium"}`}
                 >
                     <route.icon sx={{ fontSize: 20 }} />
                     <Text size={"1"} align={"center"}>
