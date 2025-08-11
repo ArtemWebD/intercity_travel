@@ -19,6 +19,7 @@
         "@tailwindcss/vite": "^4.1.11",
         "@twa-dev/sdk": "^8.0.2",
         "axios": "^1.11.0",
+        "dayjs": "^1.11.13",
         "framer-motion": "^12.23.12",
         "mobx": "^6.13.7",
         "mobx-react-lite": "^4.1.0",

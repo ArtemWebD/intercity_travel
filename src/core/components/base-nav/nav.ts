@@ -1,6 +1,7 @@
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
 
 export const routes = {
     user: [
@@ -20,6 +21,11 @@ export const routes = {
             path: "/info",
             icon: PersonOutlineOutlinedIcon,
             name: "Профиль",
+        },
+        {
+            path: "/trips",
+            icon: DirectionsCarFilledOutlinedIcon,
+            name: "Поездки",
         },
     ],
     agent: [],
