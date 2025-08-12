@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "./routes";
 import { observer } from "mobx-react-lite";
-import BaseSuspense from "../core/components/base/BaseSuspense";
 import { useContext, useMemo } from "react";
 import { StoreContext } from "../store";
 import { Roles } from "../store/auth/types/IAuthStore";
 import RouteHelper from "../core/libs/route-helper/routeHelper";
+import BaseSuspense from "../core/components/base/BaseSuspense";
 
 const AppRouter = () => {
     const { authStore } = useContext(StoreContext);
@@ -26,16 +26,12 @@ const AppRouter = () => {
         <Routes>
             {[...routes.all, ...protectedRoutes].map((route, i) => (
                 <Route
-                    key={i}
+                    key={"route" + route.path + i}
                     path={route.path}
-                    element={<BaseSuspense component={<route.component />} />}
+                    element={<BaseSuspense component={<route.component />} path={route.path} />}
                 >
                     {route.children?.map((child, i) => (
-                        <Route
-                            key={i}
-                            path={child.path}
-                            element={<BaseSuspense component={<child.component />} />}
-                        />
+                        <Route key={i} path={child.path} element={<child.component />} />
                     ))}
                 </Route>
             ))}
