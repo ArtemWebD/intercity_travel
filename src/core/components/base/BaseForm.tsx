@@ -2,6 +2,7 @@ import { Box, Button, Flex } from "@radix-ui/themes";
 import { Form } from "radix-ui";
 import { memo, type FC } from "react";
 import type { IBaseFormProps } from "./types/IBaseForm";
+import BaseButton from "./BaseButton";
 
 const BaseForm: FC<IBaseFormProps> = ({
     onSubmit,
@@ -12,30 +13,27 @@ const BaseForm: FC<IBaseFormProps> = ({
     ...props
 }) => {
     return (
-        <Box {...props} className={`${props.className ?? ""}`} p={"5"} pt={"0"}>
+        <Box {...props} className={`!w-full ${props.className ?? ""}`} p={"5"} pt={"0"}>
             <Form.Root className="w-full h-full flex flex-col pb-1" onSubmit={onSubmit}>
                 {children}
                 <Flex justify={"between"} mt={"auto"} className="!mt-auto">
-                    <Form.Submit asChild>
-                        <Button
-                            type="submit"
-                            size={"3"}
-                            className={`!cursor-pointer ${isCancel ? "" : "!w-full"}`}
-                        >
-                            {buttonLabel}
-                        </Button>
-                    </Form.Submit>
                     {isCancel && (
-                        <Button
+                        <BaseButton
+                            text="Отмена"
+                            className="!bg-transparent !border !border-gray-900 !text-gray-900"
                             type="button"
                             size={"3"}
-                            color="gray"
-                            className="!cursor-pointer"
                             onClick={onCancel}
-                        >
-                            Отмена
-                        </Button>
+                        />
                     )}
+                    <Form.Submit asChild>
+                        <BaseButton
+                            type="submit"
+                            text={buttonLabel ?? ""}
+                            size={"3"}
+                            className={`${isCancel ? "" : "!w-full"}`}
+                        />
+                    </Form.Submit>
                 </Flex>
             </Form.Root>
         </Box>
