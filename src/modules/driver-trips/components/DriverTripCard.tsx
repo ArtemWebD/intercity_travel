@@ -1,4 +1,4 @@
-import { Badge, Card, Flex, Text } from "@radix-ui/themes";
+import { Badge, Card, Flex, Popover, Text } from "@radix-ui/themes";
 import { memo, useMemo, type FC } from "react";
 import type { IDriverTripCardProps } from "./types/IDriverTripCard";
 import CarHelper from "../../../core/libs/car-helper/carHelper";
@@ -9,9 +9,23 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import BaseButton from "../../../core/components/base/BaseButton";
 import DateHelper from "../../../core/libs/date-helper/dateHelper";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const DriverTripCard: FC<IDriverTripCardProps> = ({ from, phone, time, to, type, carType }) => {
+const DriverTripCard: FC<IDriverTripCardProps> = ({
+    trip,
+    type,
+    onDelete,
+    onInfo,
+}) => {
+    const { carType, from, phone, time, to } = useMemo(() => trip, [trip]);
     const CarIcon = useMemo(() => CarHelper.getIcon(carType), [carType]);
+
+    function infoHandler(): void {
+        if (onInfo) {
+            onInfo(trip);
+        }
+    }
 
     return (
         <Card>
@@ -24,7 +38,25 @@ const DriverTripCard: FC<IDriverTripCardProps> = ({ from, phone, time, to, type,
                     </Badge>
                     <CarIcon sx={{ fontSize: 24 }} className="text-gray-400" />
                 </Flex>
-                <MoreVertIcon sx={{ fontSize: 20 }} className="cursor-pointer" />
+                <Popover.Root>
+                    <Popover.Trigger>
+                        <MoreVertIcon sx={{ fontSize: 20 }} className="cursor-pointer" />
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <Flex direction={"column"} gap={"3"}>
+                            <Flex align={"center"} gap={"1"} onClick={infoHandler}>
+                                <LightbulbIcon sx={{ fontSize: 15 }} className="text-yellow-500" />
+                                <Text size={"2"}>Информация</Text>
+                            </Flex>
+                            {type !== TripType.ACTIVE && (
+                                <Flex align={"center"} gap={"1"} onClick={onDelete}>
+                                    <DeleteIcon sx={{ fontSize: 15 }} className="text-red-500" />
+                                    <Text size={"2"}>Удалить</Text>
+                                </Flex>
+                            )}
+                        </Flex>
+                    </Popover.Content>
+                </Popover.Root>
             </Flex>
             <Flex align={"center"} gap={"2"} className="mt-2">
                 <RoomOutlinedIcon sx={{ fontSize: 15 }} className="text-green-600" />

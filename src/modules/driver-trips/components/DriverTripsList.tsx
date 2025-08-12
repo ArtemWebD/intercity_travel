@@ -4,8 +4,10 @@ import { TripType } from "./types/TripType";
 import { Flex } from "@radix-ui/themes";
 import { CarTypes } from "../../../store/driver/types/IDriverStore";
 import DriverTripCard from "./DriverTripCard";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import DateHelper from "../../../core/libs/date-helper/dateHelper";
+import type { ITrip } from "./types/ITrip";
+import DriverTripsModal from "./DriverTripsModal";
 
 const trips = {
     [TripType.ACTIVE]: [
@@ -91,8 +93,11 @@ const trips = {
 
 const DriverTripsList = () => {
     const [type, setType] = useState<TripType>(TripType.ACTIVE);
+    const [currentTrip, setCurrentTrip] = useState<ITrip | null>(null);
 
     const changeType = useCallback((type: TripType) => setType(type), [setType]);
+    const onInfo = useCallback((trip: ITrip) => setCurrentTrip(trip), [setCurrentTrip]);
+    const onCloseModal = useCallback(() => setCurrentTrip(null), [setCurrentTrip]);
 
     return (
         <>
@@ -106,17 +111,15 @@ const DriverTripsList = () => {
                         key={type + i}
                         className="w-full"
                     >
-                        <DriverTripCard
-                            from={trip.from}
-                            phone={trip.phone}
-                            time={trip.time}
-                            to={trip.to}
-                            type={type}
-                            carType={trip.carType}
-                        />
+                        <DriverTripCard trip={trip} type={type} onInfo={onInfo} />
                     </motion.div>
                 ))}
             </Flex>
+            <DriverTripsModal
+                opened={!!currentTrip}
+                onClose={onCloseModal}
+                trip={currentTrip ?? undefined}
+            />
         </>
     );
 };

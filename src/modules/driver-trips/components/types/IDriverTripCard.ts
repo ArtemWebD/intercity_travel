@@ -1,11 +1,9 @@
-import type { CarTypes } from "../../../../store/driver/types/IDriverStore";
+import type { ITrip } from "./ITrip";
 import type { TripType } from "./TripType";
 
 export interface IDriverTripCardProps {
-    carType: CarTypes;
+    trip: ITrip;
     type: TripType;
-    from: string;
-    to: string;
-    time: string;
-    phone: string;
+    onInfo?: (trip: ITrip) => void;
+    onDelete?: () => void;
 }

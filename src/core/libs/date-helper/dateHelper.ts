@@ -22,7 +22,7 @@ export default class DateHelper {
     static getISODateWithZeroUtc(date: Date | string): string {
         dayjs.extend(utc);
 
-        const dayjsObj = dayjs(date);
+        const dayjsObj = dayjs.utc(date);
         const fixedDate = dayjsObj.startOf("day").utcOffset(0, true);
 
         return fixedDate.format("YYYY-MM-DDTHH:mm:ss[Z]");
@@ -49,5 +49,14 @@ export default class DateHelper {
         }
 
         return dayJsObject.format("DD.MM.YYYY HH:mm");
+    }
+
+    static getDateFromString(date: string): Date {
+        dayjs.extend(utc);
+        const offset = -dayjs(date).utcOffset() / 60;
+        let dayjsObj = dayjs(date).utc();
+        dayjsObj = dayjsObj.add(offset, "hour");
+
+        return dayjsObj.toDate();
     }
 }

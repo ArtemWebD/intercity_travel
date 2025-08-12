@@ -4,10 +4,7 @@ import { memo, type FC } from "react";
 
 const BaseLabel: FC<FormLabelProps> = ({ children, className, ...props }) => {
     return (
-        <Form.Label
-            {...props}
-            className={`!text-sm !text-gray-400 pl-1 ${className ? className : ""}`}
-        >
+        <Form.Label {...props} className={`!text-sm pl-1 ${className ? className : ""}`}>
             {children}
         </Form.Label>
     );
