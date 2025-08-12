@@ -5,16 +5,13 @@ import StarIcon from "@mui/icons-material/Star";
 import AnimatedNumber from "../../../core/components/animated-number/AnimatedNumber";
 import EditSquareIcon from "@mui/icons-material/EditSquare";
 import BaseButton from "../../../core/components/base/BaseButton";
+import BaseImage from "../../../core/components/base/BaseImage";
 
 const DriverInfoHeader = () => {
     return (
         <BaseSection className="!flex flex-col justify-center items-center">
             <Box className="w-[90px] h-[90px] rounded-full overflow-hidden mb-3">
-                <img
-                    src="/images/driver-info/user.webp"
-                    alt="Фото профиля"
-                    className="min-w-full min-h-full object-cover"
-                />
+                <BaseImage src="/images/driver-info/user.webp" alt="Фото профиля" />
             </Box>
             <Text size={"4"}>Иванов Иван</Text>
             <Flex className="mt-3 mb-3" align={"center"} gap={"1"}>

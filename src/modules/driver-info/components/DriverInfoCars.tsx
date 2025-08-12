@@ -4,6 +4,7 @@ import { Badge, Box, Flex, Text } from "@radix-ui/themes";
 import AddIcon from "@mui/icons-material/Add";
 import BaseButton from "../../../core/components/base/BaseButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import BaseImage from "../../../core/components/base/BaseImage";
 
 const DriverInfoCars = () => {
     return (
@@ -16,11 +17,7 @@ const DriverInfoCars = () => {
                 <Box className="w-full h-[80px] rounded-lg !p-2 bg-gray-200">
                     <Flex height={"100%"} gap={"2"}>
                         <Box width={"67px"} height={"100%"} className="rounded-lg overflow-hidden">
-                            <img
-                                src="/images/driver-info/car.png"
-                                alt="Авто"
-                                className="min-w-full min-h-full object-cover"
-                            />
+                            <BaseImage src="/images/driver-info/car.png" alt="Авто" />
                         </Box>
                         <Flex gap={"5"}>
                             <Flex direction={"column"} justify={"between"}>
@@ -43,11 +40,7 @@ const DriverInfoCars = () => {
                 <Box className="w-full h-[80px] rounded-lg !p-2 bg-gray-200">
                     <Flex height={"100%"} gap={"2"}>
                         <Box width={"67px"} height={"100%"} className="rounded-lg overflow-hidden">
-                            <img
-                                src="/images/driver-info/car.png"
-                                alt="Авто"
-                                className="min-w-full min-h-full object-cover"
-                            />
+                            <BaseImage src="/images/driver-info/car.png" alt="Авто" />
                         </Box>
                         <Flex gap={"5"}>
                             <Flex direction={"column"} justify={"between"}>
