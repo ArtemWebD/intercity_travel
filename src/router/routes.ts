@@ -25,6 +25,10 @@ export const routes: IAppRoutes = {
             path: "/trips",
             component: lazy(() => import("../modules/driver-trips/views/DriverTripsPage")),
         },
+        {
+            path: "/balance",
+            component: lazy(() => import("../modules/balance/views/BalancePage")),
+        },
     ],
     agent: [],
     all: [],

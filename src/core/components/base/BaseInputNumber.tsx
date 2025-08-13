@@ -2,7 +2,12 @@ import { memo, useCallback, useEffect, useState, type ChangeEvent, type FC } fro
 import BaseInput from "./BaseInput";
 import type { IBaseInputNumberProps } from "./types/IBaseInputNumber";
 
-const BaseInputNumber: FC<IBaseInputNumberProps> = ({ value, onNumberChange, ...props }) => {
+const BaseInputNumber: FC<IBaseInputNumberProps> = ({
+    value,
+    measure,
+    onNumberChange,
+    ...props
+}) => {
     const [number, setNumber] = useState<number>(value ? +value : 0);
 
     useEffect(() => {
@@ -12,12 +17,25 @@ const BaseInputNumber: FC<IBaseInputNumberProps> = ({ value, onNumberChange, ...
     }, [number, onNumberChange]);
 
     const changeHandler = useCallback(
-        (event: ChangeEvent<HTMLInputElement>) => setNumber(+event.target.value),
+        (event: ChangeEvent<HTMLInputElement>) => {
+            const value = +event.target.value.replace(measure ?? "", "").trim();
+
+            if (isNaN(value)) {
+                return;
+            }
+
+            setNumber(value);
+        },
         [setNumber],
     );
 
     return (
-        <BaseInput {...props} type="number" onChange={changeHandler} value={number?.toString()} />
+        <BaseInput
+            {...props}
+            type={!!measure ? "text" : "number"}
+            onChange={changeHandler}
+            value={number?.toString() + `${measure ? " " + measure : ""}`}
+        />
     );
 };
 
