@@ -1,3 +1,4 @@
 export interface IBaseImageUploadProps {
-    onImage: (image: string) => void;
+    isOverlay?: boolean;
+    onChange?: (image: string) => void;
 }

@@ -14,4 +14,8 @@ export default class ValidationHelper {
     static getMaxValue(value: number | string): string {
         return `Максимальное значение ${value}`;
     }
+
+    static getMinValue(value: number | string): string {
+        return `Минимальное значение ${value}`;
+    }
 }
