@@ -1,5 +1,3 @@
-import { DADATA_TOKEN } from "../../../constants";
-
 export default class AddressSuggestions {
     static async getSuggestions(query: string): Promise<string[] | null> {
         try {
@@ -11,7 +9,7 @@ export default class AddressSuggestions {
                     headers: {
                         "Content-Type": "application/json",
                         Accept: "application/json",
-                        Authorization: "Token " + DADATA_TOKEN,
+                        Authorization: "Token " + process.env.REACT_APP_DADATA_TOKEN,
                     },
                     body: JSON.stringify({ query: query }),
                 },
