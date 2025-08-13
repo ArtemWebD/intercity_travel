@@ -1,16 +1,20 @@
-import { Box, Button, Dialog, Flex } from "@radix-ui/themes";
-import { createRef, memo, useEffect, useMemo, useState, type ChangeEvent, type FC } from "react";
+import { Box, Button, Dialog, Flex, Text } from "@radix-ui/themes";
+import { createRef, memo, useMemo, useState, type ChangeEvent, type FC } from "react";
 import Cropper, { type ReactCropperElement } from "react-cropper";
 import type { IBaseImageUploadProps } from "./types/IBaseImageUpload";
 import "cropperjs/dist/cropper.css";
+import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import BaseImage from "../base/BaseImage";
+import BaseButton from "../base/BaseButton";
 
-const BaseImageUpload: FC<IBaseImageUploadProps> = ({ onImage }) => {
+const BaseImageUpload: FC<IBaseImageUploadProps> = ({ onChange, isOverlay }) => {
     const [image, setImage] = useState("");
+    const [savedImage, setSavedImage] = useState("");
     const cropperRef = createRef<ReactCropperElement>();
 
     const id = useMemo(() => Math.random().toString().slice(1), []);
 
-    function onChange(event: ChangeEvent<HTMLInputElement>): void {
+    function handleChange(event: ChangeEvent<HTMLInputElement>): void {
         event.preventDefault();
 
         if (!event.target) {
@@ -39,7 +43,14 @@ const BaseImageUpload: FC<IBaseImageUploadProps> = ({ onImage }) => {
             return;
         }
 
-        onImage(cropped);
+        if (onChange) {
+            onChange(cropped);
+        }
+
+        if (!isOverlay) {
+            setSavedImage(cropped);
+        }
+
         cancel();
     }
 
@@ -50,25 +61,47 @@ const BaseImageUpload: FC<IBaseImageUploadProps> = ({ onImage }) => {
     return (
         <>
             <Box
-                position={"absolute"}
+                position={isOverlay ? "absolute" : "relative"}
                 left={"0"}
                 top={"0"}
                 width={"100%"}
-                height={"100%"}
-                className="!cursor-pointer z-1"
+                height={isOverlay ? "100%" : "100px"}
+                className={`!cursor-pointer z-1 overflow-hidden ${isOverlay ? "" : "bg-gray-200 rounded-lg"}`}
             >
+                {!!savedImage && !isOverlay && (
+                    <BaseImage
+                        src={savedImage}
+                        alt="Загруженное изображение"
+                        className="absolute left-0 right-0 w-full h-full"
+                    />
+                )}
                 <input
                     type="file"
                     name="image"
                     id={id}
                     accept=".png, .jpg"
                     className="hidden"
-                    onChange={onChange}
+                    onChange={handleChange}
                 />
                 <label
                     htmlFor={id}
                     className="block w-full h-full absolute top-0 left-0 cursor-pointer"
-                />
+                >
+                    {!isOverlay && !!!savedImage && (
+                        <Flex
+                            justify={"center"}
+                            align={"center"}
+                            direction={"column"}
+                            className="w-full h-full"
+                        >
+                            <CameraAltOutlinedIcon
+                                sx={{ fontSize: 30 }}
+                                className="text-gray-400"
+                            />
+                            <Text size={"3"}>Загрузить фото</Text>
+                        </Flex>
+                    )}
+                </label>
             </Box>
             <Dialog.Root open={!!image}>
                 <Dialog.Content>
@@ -96,12 +129,12 @@ const BaseImageUpload: FC<IBaseImageUploadProps> = ({ onImage }) => {
                         />
                     </Flex>
                     <Flex justify={"between"} mt={"5"}>
-                        <Button size={"3"} onClick={onSave}>
-                            Сохранить
-                        </Button>
-                        <Button size={"3"} color="red" onClick={cancel}>
-                            Отменить
-                        </Button>
+                        <BaseButton
+                            text="Отменить"
+                            className="!bg-transparent !border !border-gray-900 !text-gray-900"
+                            onClick={cancel}
+                        />
+                        <BaseButton text="Сохранить" onClick={onSave} />
                     </Flex>
                 </Dialog.Content>
             </Dialog.Root>
