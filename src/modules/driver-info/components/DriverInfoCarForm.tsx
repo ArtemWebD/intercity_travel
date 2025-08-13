@@ -24,9 +24,9 @@ import ValidationHelper from "../../../core/libs/validation-helper/validationHel
 import { useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import BaseFormMessage from "../../../core/components/base/BaseFormMessage";
-import type { IDriverInfoFormProps } from "./types/IDriverInfoForm";
+import type { IFormProps } from "../../../core/types/IForm";
 
-const DriverInfoCarForm: FC<IDriverInfoFormProps> = ({ onSubmit, onCancel }) => {
+const DriverInfoCarForm: FC<IFormProps> = ({ onSubmit, onCancel }) => {
     const carTypesOptions = useMemo(
         () =>
             Object.values(CarTypes).map((type) => ({

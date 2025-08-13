@@ -1,7 +1,6 @@
+import type { IFormProps } from "../../../../core/types/IForm";
 import type { ITripData } from "./ITrip";
 
-export interface IDriverTripFormProps {
+export interface IDriverTripFormProps extends IFormProps {
     initialValue?: ITripData;
-    onSubmit?: () => void;
-    onCancel?: () => void;
 }

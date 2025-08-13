@@ -1,12 +1,12 @@
 import { memo, type FC } from "react";
-import type { IDriverInfoModalProps } from "./types/IDriverInfoModal";
 import { Dialog, Flex } from "@radix-ui/themes";
 import DriverInfoCarForm from "./DriverInfoCarForm";
 import { AnimatePresence, motion } from "framer-motion";
 import useSubmited from "../../../core/hooks/submited/useSubmited";
 import BaseSuccessScreen from "../../../core/components/base/BaseSuccessScreen";
+import type { IModalProps } from "../../../core/types/IModal";
 
-const DriverInfoModal: FC<IDriverInfoModalProps> = ({ opened, onClose }) => {
+const DriverInfoModal: FC<IModalProps> = ({ opened, onClose }) => {
     const { submited, changeSubmited } = useSubmited();
 
     function onOpenChange(open: boolean): void {
