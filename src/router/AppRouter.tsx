@@ -1,48 +1,49 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useNavigationGuard } from "../core/hooks/navigation/useNavigationGuard";
 import { routes } from "./routes";
 import { observer } from "mobx-react-lite";
+import { useContext, useMemo } from "react";
+import { StoreContext } from "../store";
+import { Roles } from "../store/auth/types/IAuthStore";
+import RouteHelper from "../core/libs/route-helper/routeHelper";
 import BaseSuspense from "../core/components/base/BaseSuspense";
 
 const AppRouter = () => {
-    useNavigationGuard({
-        authRoute: routes.auth.path,
-        driverRoutes: routes.driver.map((route) => ({
-            path: route.path,
-            children: route.children?.map((route) => ({ path: route.path })),
-        })),
-        agentRoutes: routes.agent.map((route) => ({
-            path: route.path,
-            children: route.children?.map((route) => ({ path: route.path })),
-        })),
-        userRoutes: routes.user.map((route) => ({
-            path: route.path,
-            children: route.children?.map((route) => ({ path: route.path })),
-        })),
-    });
+    const { authStore } = useContext(StoreContext);
+    const protectedRoutes = useMemo(() => {
+        switch (authStore.getRole) {
+            case Roles.USER:
+                return routes.user;
+            case Roles.DRIVER:
+                return routes.driver;
+            case Roles.AGENT:
+                return routes.agent;
+            default:
+                return [];
+        }
+    }, [authStore.getRole]);
 
     return (
         <Routes>
-            <Route
-                path={routes.auth.path}
-                element={<BaseSuspense component={<routes.auth.component />} />}
-            />
-            {[...routes.user, ...routes.driver, ...routes.agent].map((route, i) => (
+            {[...routes.all, ...protectedRoutes].map((route, i) => (
                 <Route
-                    key={i}
+                    key={"route" + route.path + i}
                     path={route.path}
-                    element={<BaseSuspense component={<route.component />} />}
+                    element={<BaseSuspense component={<route.component />} path={route.path} />}
                 >
                     {route.children?.map((child, i) => (
-                        <Route
-                            key={i * 2}
-                            path={child.path}
-                            element={<BaseSuspense component={<child.component />} />}
-                        />
+                        <Route key={i} path={child.path} element={<child.component />} />
                     ))}
                 </Route>
             ))}
-            <Route path="*" element={<Navigate to={routes.auth.path} replace />} />
+            <Route
+                path="*"
+                element={
+                    <Navigate
+                        to={RouteHelper.clearPath(protectedRoutes[0]?.path ?? routes.all[0].path)}
+                        replace
+                    />
+                }
+            />
         </Routes>
     );
 };

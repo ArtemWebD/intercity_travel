@@ -7,8 +7,8 @@ export interface IRoute {
 }
 
 export interface IAppRoutes {
-    auth: IRoute;
     driver: IRoute[];
     agent: IRoute[];
     user: IRoute[];
+    all: IRoute[];
 }

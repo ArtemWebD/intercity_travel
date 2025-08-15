@@ -6,8 +6,8 @@ const BaseInput: FC<IBaseInputProps> = ({ fluid, ...props }) => {
     return (
         <TextField.Root
             {...props}
-            size={"3"}
-            className={fluid ? "w-full" : "" + (props.className ?? "")}
+            size={"2"}
+            className={`!text-sm !bg-gray-200 !outline-none ${fluid ? "w-full" : "" + (props.className ?? "")}`}
         />
     );
 };
