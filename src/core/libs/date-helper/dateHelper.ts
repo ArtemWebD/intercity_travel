@@ -59,4 +59,16 @@ export default class DateHelper {
 
         return dayjsObj.toDate();
     }
+
+    static getToday(): Date {
+        const date = dayjs();
+
+        return date.toDate();
+    }
+
+    static getDateString(date: Date): string {
+        const dayJsObj = dayjs(date);
+
+        return dayJsObj.format("DD.MM.YYYY");
+    }
 }

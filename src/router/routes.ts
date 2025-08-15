@@ -29,6 +29,10 @@ export const routes: IAppRoutes = {
             path: "/balance",
             component: lazy(() => import("../modules/balance/views/BalancePage")),
         },
+        {
+            path: "/calendar",
+            component: lazy(() => import("../modules/calendar/views/CalendarPage")),
+        },
     ],
     agent: [],
     all: [],

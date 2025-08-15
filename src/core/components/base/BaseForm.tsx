@@ -14,9 +14,9 @@ const BaseForm: FC<IBaseFormProps> = ({
 }) => {
     return (
         <Box {...props} className={`!w-full ${props.className ?? ""}`} p={"5"} pt={"0"}>
-            <Form.Root className="w-full h-full flex flex-col pb-1" onSubmit={onSubmit}>
+            <Form.Root className="w-full h-full flex flex-col" onSubmit={onSubmit}>
                 {children}
-                <Flex justify={"between"} mt={"auto"} className="!mt-auto">
+                <Flex justify={"between"} className="!pb-4">
                     {isCancel && (
                         <BaseButton
                             text="Отмена"
