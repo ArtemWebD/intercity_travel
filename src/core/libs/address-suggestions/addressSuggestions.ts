@@ -9,7 +9,7 @@ export default class AddressSuggestions {
                     headers: {
                         "Content-Type": "application/json",
                         Accept: "application/json",
-                        Authorization: "Token " + process.env.REACT_APP_DADATA_TOKEN,
+                        Authorization: "Token " + import.meta.env.VITE_DADATA_TOKEN,
                     },
                     body: JSON.stringify({ query: query }),
                 },

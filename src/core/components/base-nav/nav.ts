@@ -3,6 +3,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 
 export const routes = {
     user: [
@@ -32,6 +33,11 @@ export const routes = {
             path: "/trips",
             icon: DirectionsCarFilledOutlinedIcon,
             name: "Поездки",
+        },
+        {
+            path: "/calendar",
+            icon: CalendarTodayOutlinedIcon,
+            name: "Календарь",
         },
     ],
     agent: [],

@@ -35,9 +35,9 @@ const DriverTripsModal: FC<IDriverTripsModalProps> = ({ opened, onClose, trip })
 
     return (
         <Dialog.Root open={opened} onOpenChange={closeHandler}>
-            <Dialog.Content>
-                <Dialog.Title>Информация</Dialog.Title>
-                <Flex width={"100%"} className="!h-[70vh]">
+            <Dialog.Content className="pb-3">
+                <Dialog.Title>{!!trip ? "Информация" : "Новая поездка"}</Dialog.Title>
+                <Flex width={"100%"} className="!min-h-[50vh]">
                     <AnimatePresence mode="wait">
                         {!submited ? (
                             <motion.div

@@ -55,7 +55,7 @@ const BaseAddressInput: FC<IBaseAddressInputProps> = ({ onChange, value }) => {
                 {...getMenuProps()}
                 direction={"column"}
                 gap={"2"}
-                className={`${!isOpen && !!!suggestions.length ? "hidden" : ""} p-1 bg-gray-50 rounded-lg w-full absolute bottom-0 left-0 z-1 translate-y-[100%] max-h-[150px] overflow-y-auto`}
+                className={`${!isOpen && !!!suggestions.length ? "!hidden" : ""} p-1 bg-gray-50 rounded-lg w-full absolute bottom-0 left-0 z-1 translate-y-[100%] max-h-[150px] overflow-y-auto`}
             >
                 {isOpen &&
                     suggestions.map((suggestion, i) => (
