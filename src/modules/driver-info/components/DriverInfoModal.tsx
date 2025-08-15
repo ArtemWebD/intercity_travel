@@ -17,7 +17,7 @@ const DriverInfoModal: FC<IModalProps> = ({ opened, onClose }) => {
 
     return (
         <Dialog.Root open={opened} onOpenChange={onOpenChange}>
-            <Dialog.Content className="min-h-[50vh]">
+            <Dialog.Content>
                 <Dialog.Title>Новое авто</Dialog.Title>
                 <AnimatePresence mode="wait">
                     {!submited ? (
