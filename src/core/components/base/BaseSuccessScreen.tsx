@@ -11,7 +11,7 @@ const BaseSuccessScreen: FC<IBaseSuccessScreenProps> = ({ text = "Данные �
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="w-full h-full"
+            className="w-full h-[50vh]"
         >
             <Flex
                 justify={"center"}
